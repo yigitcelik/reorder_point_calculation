@@ -55,8 +55,7 @@ def predict(mat,period=365):
     """
 
     temp_df = data[data['kod']==mat].reset_index(drop='index')  #it filters the given material number from the dataset
-    #temp_df['Giriş tarihi'] = temp_df['Giriş tarihi'].dt.to_period('M').dt.to_timestamp()
-    #temp_df['yil'] = temp_df['Giriş tarihi'].dt.year
+
 
     for year in range(data['yil'].min()-1,data['yil'].max()+1): #In case of missing year info in the bfilling process, it adds all neccesary years info with zero quantity
         temp_df=temp_df.append({'kod':mat,'Temel ölçü birimi':'XX','yil':year,'Miktar':0,'Giriş tarihi':pd.to_datetime(year, format='%Y')},ignore_index=True)
